@@ -13,7 +13,15 @@ void main() {
   ));
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 4;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -21,17 +29,23 @@ class DicePage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: FlatButton(
-              child: Image.asset('images/dice1.png'),
+              child: Image.asset('images/dice$leftDiceNumber.png'),
               onPressed: () {
-                print('left button pressed');
+                setState(() {
+                  leftDiceNumber = 2;
+                  print('left button pressed');
+                });
               },
             ),
           ),
           Expanded(
             child: FlatButton(
-              child: Image.asset('images/dice6.png'),
+              child: Image.asset('images/dice$rightDiceNumber.png'),
               onPressed: () {
-                print('right button pressed');
+                setState(() {
+                  rightDiceNumber = 2;
+                  print('right button pressed');
+                });
               },
             ),
           ),
@@ -40,3 +54,34 @@ class DicePage extends StatelessWidget {
     );
   }
 }
+
+//class DicePage extends StatelessWidget {
+//  int leftDiceNumber = 1;
+//  int rightDiceNumber = 4;
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Center(
+//      child: Row(
+//        children: <Widget>[
+//          Expanded(
+//            child: FlatButton(
+//              child: Image.asset('images/dice$leftDiceNumber.png'),
+//              onPressed: () {
+//                print('left button pressed');
+//              },
+//            ),
+//          ),
+//          Expanded(
+//            child: FlatButton(
+//              child: Image.asset('images/dice$rightDiceNumber.png'),
+//              onPressed: () {
+//                print('right button pressed');
+//              },
+//            ),
+//          ),
+//        ],
+//      ),
+//    );
+//  }
+//}
