@@ -22,7 +22,7 @@ class DicePage extends StatefulWidget {
 
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
-  int rightDiceNumber = 4;
+  int rightDiceNumber = 1;
 
   int generateRandomInt() {
     return Random().nextInt(6) + 1;
@@ -50,6 +50,8 @@ class _DicePageState extends State<DicePage> {
               child: Image.asset('images/dice$rightDiceNumber.png'),
               onPressed: () {
                 setState(() {
+                  rightDiceNumber = generateRandomInt();
+
                   print('right button pressed');
                 });
               },
