@@ -24,8 +24,26 @@ class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 1;
 
-  int generateRandomInt() {
+  int _generateRandomInt() {
     return Random().nextInt(6) + 1;
+  }
+
+  void _rollDice() {
+    setState(() {
+      leftDiceNumber = _generateRandomInt();
+      rightDiceNumber = _generateRandomInt();
+    });
+  }
+
+  Widget _buildDiceButtons(int diceNumber) {
+    return Expanded(
+      child: FlatButton(
+        child: Image.asset('images/dice$diceNumber.png'),
+        onPressed: () {
+          _rollDice();
+        },
+      ),
+    );
   }
 
   @override
@@ -33,30 +51,8 @@ class _DicePageState extends State<DicePage> {
     return Center(
       child: Row(
         children: <Widget>[
-          Expanded(
-            child: FlatButton(
-              child: Image.asset('images/dice$leftDiceNumber.png'),
-              onPressed: () {
-                setState(() {
-                  leftDiceNumber = generateRandomInt();
-
-                  print('left button pressed');
-                });
-              },
-            ),
-          ),
-          Expanded(
-            child: FlatButton(
-              child: Image.asset('images/dice$rightDiceNumber.png'),
-              onPressed: () {
-                setState(() {
-                  rightDiceNumber = generateRandomInt();
-
-                  print('right button pressed');
-                });
-              },
-            ),
-          ),
+          _buildDiceButtons(leftDiceNumber),
+          _buildDiceButtons(rightDiceNumber),
         ],
       ),
     );
